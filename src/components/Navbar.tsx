@@ -16,27 +16,31 @@ const Navbar: React.FC = () => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-card/80 backdrop-blur-lg">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-black/90 backdrop-blur-lg glass-effect shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2 group">
-            <div className="p-2 rounded-lg bg-primary text-primary-foreground transition-transform group-hover:scale-105">
-              <Vote className="w-5 h-5" />
+          <Link to="/" className="flex items-center gap-3 group">
+            <div className="p-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white transition-all duration-300 group-hover:scale-110 group-hover:shadow-purple-500/50 group-hover:rotate-y-5 transform-3d">
+              <Vote className="w-6 h-6" />
             </div>
-            <span className="font-display font-bold text-xl text-foreground">
+            <span className="font-display font-bold text-2xl text-white">
               E-Vote
             </span>
           </Link>
 
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-2">
             {navLinks.map(({ path, label, icon: Icon }) => (
               <Link key={path} to={path}>
                 <Button
                   variant={isActive(path) ? 'default' : 'ghost'}
                   size="sm"
-                  className="gap-2"
+                  className={`gap-2 transition-all duration-300 ${
+                    isActive(path) 
+                      ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-purple-500/30' 
+                      : 'text-gray-300 hover:text-white hover:bg-white/10'
+                  }`}
                 >
                   <Icon className="w-4 h-4" />
                   {label}
@@ -46,11 +50,11 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Auth Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {isAuthenticated ? (
               <>
                 <Link to="/register-candidate">
-                  <Button variant="outline" size="sm" className="gap-2 hidden sm:flex">
+                  <Button variant="outline" size="sm" className="gap-2 hidden sm:flex border-purple-500 text-purple-300 hover:bg-gradient-to-r hover:from-purple-600 hover:to-indigo-600 hover:text-white hover:border-purple-600 transition-all duration-300">
                     <User className="w-4 h-4" />
                     Register Candidate
                   </Button>
@@ -59,7 +63,7 @@ const Navbar: React.FC = () => {
                   variant="ghost"
                   size="sm"
                   onClick={logout}
-                  className="gap-2 text-destructive hover:text-destructive hover:bg-destructive/10"
+                  className="gap-2 text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-all duration-300"
                 >
                   <LogOut className="w-4 h-4" />
                   <span className="hidden sm:inline">Logout</span>
@@ -68,12 +72,12 @@ const Navbar: React.FC = () => {
             ) : (
               <>
                 <Link to="/login">
-                  <Button variant="ghost" size="sm">
+                  <Button variant="ghost" size="sm" className="text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-300">
                     Login
                   </Button>
                 </Link>
                 <Link to="/register-voter">
-                  <Button variant="default" size="sm">
+                  <Button variant="default" size="sm" className="bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white">
                     Register
                   </Button>
                 </Link>

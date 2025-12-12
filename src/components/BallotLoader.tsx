@@ -15,23 +15,26 @@ const BallotLoader: React.FC<BallotLoaderProps> = ({ text = 'Loading...', size =
   const classes = sizeClasses[size];
 
   return (
-    <div className="flex flex-col items-center justify-center gap-6">
-      {/* Pulse ring behind the box */}
+    <div className="flex flex-col items-center justify-center gap-8">
+      {/* Glow effect behind the loader */}
       <div className="relative">
+        <div className={`absolute inset-0 rounded-xl bg-primary/30 blur-xl animate-pulse ${classes.box}`} />
+        
+        {/* Pulse ring behind the box */}
         <div className={`absolute inset-0 rounded-xl bg-primary/20 animate-pulse-ring ${classes.box}`} />
         
         {/* Ballot Box */}
-        <div className={`relative ${classes.box} animate-box-shake`}>
+        <div className={`relative ${classes.box} animate-box-shake transform-3d perspective-1000`}>
           {/* Box body */}
-          <div className="absolute bottom-0 left-0 right-0 h-3/4 bg-gradient-to-b from-primary to-primary/80 rounded-lg shadow-lg">
+          <div className="absolute bottom-0 left-0 right-0 h-3/4 bg-gradient-to-b from-primary to-primary/80 rounded-xl shadow-lg neumorphic">
             {/* Box slot */}
-            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3/4 h-2 bg-foreground/90 rounded-sm" />
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-3/4 h-2 bg-foreground/90 rounded-sm shadow-inner" />
             
             {/* Box front design */}
             <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1">
-              <div className="w-8 h-8 rounded-full border-2 border-primary-foreground/50 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full border-2 border-primary-foreground/50 flex items-center justify-center shadow-lg">
                 <svg 
-                  className="w-4 h-4 text-primary-foreground" 
+                  className="w-4 h-4 text-primary-foreground animate-glow" 
                   fill="none" 
                   viewBox="0 0 24 24" 
                   stroke="currentColor"
@@ -51,33 +54,33 @@ const BallotLoader: React.FC<BallotLoaderProps> = ({ text = 'Loading...', size =
           <div className="absolute top-0 left-1/2 -translate-x-1/2 overflow-hidden h-full w-full">
             {/* Ballot 1 */}
             <div 
-              className={`absolute left-1/2 -translate-x-1/2 ${classes.ballot} bg-card border-2 border-border rounded shadow-md animate-ballot-drop stagger-1`}
+              className={`absolute left-1/2 -translate-x-1/2 ${classes.ballot} bg-card border-2 border-border rounded-lg shadow-md animate-ballot-drop stagger-1 transform-3d`}
             >
               <div className="w-full h-full p-1 flex flex-col justify-center gap-0.5">
-                <div className="h-1 bg-muted rounded w-3/4" />
-                <div className="h-1 bg-primary/30 rounded w-1/2" />
+                <div className="h-1 bg-muted rounded w-3/4 animate-pulse" />
+                <div className="h-1 bg-primary/30 rounded w-1/2 animate-pulse" />
               </div>
             </div>
             
             {/* Ballot 2 */}
             <div 
-              className={`absolute left-1/3 -translate-x-1/2 ${classes.ballot} bg-card border-2 border-border rounded shadow-md animate-ballot-drop stagger-2`}
+              className={`absolute left-1/3 -translate-x-1/2 ${classes.ballot} bg-card border-2 border-border rounded-lg shadow-md animate-ballot-drop stagger-2 transform-3d`}
               style={{ width: 'calc(100% * 0.45)' }}
             >
               <div className="w-full h-full p-1 flex flex-col justify-center gap-0.5">
-                <div className="h-1 bg-muted rounded w-2/3" />
-                <div className="h-1 bg-secondary/30 rounded w-1/2" />
+                <div className="h-1 bg-muted rounded w-2/3 animate-pulse" />
+                <div className="h-1 bg-secondary/30 rounded w-1/2 animate-pulse" />
               </div>
             </div>
             
             {/* Ballot 3 */}
             <div 
-              className={`absolute left-2/3 -translate-x-1/2 ${classes.ballot} bg-card border-2 border-border rounded shadow-md animate-ballot-drop stagger-3`}
+              className={`absolute left-2/3 -translate-x-1/2 ${classes.ballot} bg-card border-2 border-border rounded-lg shadow-md animate-ballot-drop stagger-3 transform-3d`}
               style={{ width: 'calc(100% * 0.4)' }}
             >
               <div className="w-full h-full p-1 flex flex-col justify-center gap-0.5">
-                <div className="h-1 bg-muted rounded w-4/5" />
-                <div className="h-1 bg-accent/30 rounded w-2/3" />
+                <div className="h-1 bg-muted rounded w-4/5 animate-pulse" />
+                <div className="h-1 bg-accent/30 rounded w-2/3 animate-pulse" />
               </div>
             </div>
           </div>
@@ -85,7 +88,7 @@ const BallotLoader: React.FC<BallotLoaderProps> = ({ text = 'Loading...', size =
       </div>
 
       {/* Loading text */}
-      <p className={`${classes.text} font-medium text-muted-foreground animate-pulse`}>
+      <p className={`${classes.text} font-medium text-muted-foreground animate-pulse text-center`}>
         {text}
       </p>
     </div>

@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import RegisterVoter from "./pages/RegisterVoter";
 import RegisterCandidate from "./pages/RegisterCandidate";
 import Candidates from "./pages/Candidates";
+import Results from "./pages/Results";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +30,7 @@ const App = () => (
             <Route path="/login" element={<Login />} />
             <Route path="/register-voter" element={<RegisterVoter />} />
             <Route path="/candidates" element={<Candidates />} />
+            <Route path="/results/:positionId" element={<Results />} />
             
             {/* Protected Routes */}
             <Route
